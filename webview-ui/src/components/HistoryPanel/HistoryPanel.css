@@ -1,0 +1,84 @@
+/* HistoryPanel.css */
+.history-container {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .history-title {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .back-button,
+  .add-button,
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .search-container {
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .history-content {
+    overflow-y: auto;
+    max-height: 400px;
+  }
+  
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  .section-title {
+    font-size: 14px;
+    color: #888;
+    margin: 10px 0;
+  }
+  
+  .history-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .history-item {
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .history-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .history-item.checked::before {
+    content: "✓ ";
+    color: green;
+  }
+  
+  .history-item.active {
+    background-color: #e0e0e0;
+  }
+  

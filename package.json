@@ -1,0 +1,153 @@
+{
+  "name": "papaya",
+  "displayName": "papaya",
+  "description": "papaya desc",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.91.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:papaya.addTodo",
+    "onView:papaya-sidebar"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsWelcome": [
+      {
+        "view": "scm",
+        "contents": "In order to use git features, you can open a folder containing a git repository or clone from a URL.\n[Open Folder](command:vscode.openFolder)\n[Clone Repository](command:git.clone)\nTo learn more about how to use git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
+        "when": "config.git.enabled && git.state == initialized && workbenchState == empty"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "papaya-playground",
+          "title": "Papaya Playground",
+          "icon": "src/resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "papaya-playground": [
+        {
+          "type": "webview",
+          "id": "papaya-sidebar",
+          "name": "Remote-AI",
+          "icon": "src/resources/icon.svg",
+          "contextualTitle": "papaya"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "papaya.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "papaya.addTodo",
+        "category": "papaya",
+        "title": "Add Todo From Selection"
+      }
+    ],
+    "configuration": {
+      "title": "Papaya",
+      "properties": {
+        "continue.telemetryEnabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Papaya collects anonymous usage data, cleaned of PII, to help us improve the product for our users."
+        },
+        "continue.userToken": {
+          "type": "string",
+          "default": null,
+          "markdownDescription": "If your team is set up to use shared configuration, enter your user token here and your server URL above to enable automatic syncing."
+        }
+      }
+    },
+    "walkthroughs": [
+      {
+        "id": "continue",
+        "title": "Getting Started with Papaya",
+        "description": "Learn how to use Continue",
+        "steps": [
+          {
+            "id": "signin",
+            "title": "Sign In with Papaya",
+            "description": "To get started with Papaya, sign in with your Remote-AI account. \n[Sign In](command:getting-started-signin.runCommand)",
+            "media": {
+              "image": "src/resource/icon.png",
+              "altText": "Sign in using Papaya"
+            },
+            "completionEvents": [
+              "onCommand:getting-started-signin.runCommand"
+            ],
+            "markdownDescription": [
+              "[Click here to learn more](command:myExtension.learnMore)"
+            ]
+          },
+          {
+            "id": "explain",
+            "title": "AI-powered suggestions",
+            "description": "With Papaya, you'll receive intelligent code suggestions, spot and fix errors instantly, and enjoy seamless real-time collaboration. \nWhether you're tackling a complex project or just starting, Papaya adapts to your coding style and preferences, providing personalized assistance that evolves with you.",
+            "media": {
+              "image": "src/resource/icon.png",
+              "altText": "Empty image"
+            },
+            "completionEvents": []
+          },
+          {
+            "id": "generate",
+            "title": "Powered by your creativity",
+            "description": "Designed to empower you, Papaya leverages cutting-edge LLM to assist you in writing code faster and with less effort.",
+            "media": {
+              "image": "src/resource/icon.png",
+              "altText": "Empty image"
+            },
+            "completionEvents": []
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "install:all": "npm install && cd webview-ui && npm install",
+    "start:webview": "cd webview-ui && npm run start",
+    "build:webview": "cd webview-ui && npm run build",
+    "test:webview": "cd webview-ui && npm run test",
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.91.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.11.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0",
+    "eslint": "^8.57.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.5",
+    "webpack": "^5.92.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@types/vscode-webview": "^1.57.5",
+    "@vscode/extension-telemetry": "^0.9.6",
+    "@vscode/webview-ui-toolkit": "^1.4.0",
+    "ollama": "^0.5.6",
+    "ulid": "^2.3.0",
+    "weather-js": "^2.0.0"
+  }
+}
